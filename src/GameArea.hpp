@@ -24,6 +24,13 @@ class GameArea{
 
 public:
 	GLint gameAreaMatrix[3][3];
+	GameArea();
+	GLint checkVerticalKlax();
+	GLint checkHorizontalKlax();
+	GLint checkDiagonalKlax();
+	void breakDownVerticalKlax(GLint);
+	void breakDownHorizontalKlax(GLint);
+	void breakdownDiagonalKlax();
 
 };
 

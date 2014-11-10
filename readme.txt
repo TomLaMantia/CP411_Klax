@@ -10,11 +10,11 @@ Evaluation grid
 [self-evaluation/out-of/marker-evaluation]
 
 1. Proposal
-- Problem description              [/5/]
-- Creativity                       [/5/]
-- Design consideration             [/5/]
-- Implementation plan/schedule     [/5/]
-- Writing of the proposal          [/5/]
+- Problem description              [5/5/]
+- Creativity                       [5/5/]
+- Design consideration             [5/5/]
+- Implementation plan/schedule     [5/5/]
+- Writing of the proposal          [5/5/]
  
 2. Implementation
 - Completeness:                    [/30/]
