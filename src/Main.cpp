@@ -12,6 +12,7 @@
 #include<GL/glut.h>
 #include"ViewingEye.hpp"
 #include"Block.hpp"
+#include"GameArea.hpp"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ CONST int windowHeight = 800;
 
 //Program global objects
 ViewingEye myCamera;
+GameArea myGameArea;
 
 /*  Set positions for near and far clipping planes:  */
 GLfloat vangle = 40.0, dnear = 1.0, dfar = 10.0;

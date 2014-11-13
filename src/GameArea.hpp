@@ -19,6 +19,7 @@
 #define CGAMEAREA_H
 
 #include<GL/glut.h>
+#include"Block.hpp"
 
 class GameArea{
 
@@ -30,7 +31,9 @@ public:
 	GLint checkDiagonalKlax();
 	void breakDownVerticalKlax(GLint);
 	void breakDownHorizontalKlax(GLint);
-	void breakdownDiagonalKlax();
+	void breakDownDiagonalKlax();
+	void printGameAreaTest();
+	bool insertNewBlock(GLint, Block);
 
 };
 
