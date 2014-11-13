@@ -18,9 +18,21 @@
 
 GameArea :: GameArea()
 {
-	gameAreaMatrix[0][0] = -1; gameAreaMatrix[0][1] = -2; gameAreaMatrix[0][2] = -1;
+	gameAreaMatrix[0][0] = -1; gameAreaMatrix[0][1] = -1; gameAreaMatrix[0][2] = -1;
 	gameAreaMatrix[1][0] = -1; gameAreaMatrix[1][1] = -1; gameAreaMatrix[1][2] = -1;
-	gameAreaMatrix[2][0] = 3; gameAreaMatrix[2][1] = 3; gameAreaMatrix[2][2] = 3;
+	gameAreaMatrix[2][0] = -1; gameAreaMatrix[2][1] = -1; gameAreaMatrix[2][2] = -1;
+}
+
+void GameArea :: reset()
+{
+	gameAreaMatrix[0][0] = -1; gameAreaMatrix[0][1] = -1; gameAreaMatrix[0][2] = -1;
+	gameAreaMatrix[1][0] = -1; gameAreaMatrix[1][1] = -1; gameAreaMatrix[1][2] = -1;
+	gameAreaMatrix[2][0] = -1; gameAreaMatrix[2][1] = -1; gameAreaMatrix[2][2] = -1;
+}
+
+void GameArea :: draw()
+{
+
 }
 
 void GameArea :: printGameAreaTest()
@@ -96,16 +108,16 @@ bool GameArea :: insertNewBlock(GLint colNumber, Block newBlock)
 	bool blockInserted = false;
 	GLint i = 2;
 
-	if(this->gameAreaMatrix[0][colNumber] != -1)
+	if(this->gameAreaMatrix[0][colNumber] == -1)
 	{
 		while(i >= 0 && blockInserted == false)
 		{
-			if(this->gameAreaMatrix[i][colNumber] != -1)
+			if(this->gameAreaMatrix[i][colNumber] == -1)
 			{
 				this->gameAreaMatrix[i][colNumber] = 1; //ie put the shape in!
 				blockInserted = true;
 			}
-			i++;
+			i--;
 		}
 	}
 

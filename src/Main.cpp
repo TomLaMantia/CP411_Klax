@@ -62,18 +62,18 @@ void Init(void)
 
 int main(int argc, char** argv)
 {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowPosition(windowPositionX, windowPositionY);
-	glutInitWindowSize(windowWidth, windowHeight);
-	glutCreateWindow("Klax (By Tom LaMantia)");
-
-	Init();
-	glutDisplayFunc(DisplayFunction);
-	glutKeyboardFunc(KeyboardFunction);
-
-	/* Do it */
-	glutMainLoop();
+//	glutInit(&argc, argv);
+//	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+//	glutInitWindowPosition(windowPositionX, windowPositionY);
+//	glutInitWindowSize(windowWidth, windowHeight);
+//	glutCreateWindow("Klax (By Tom LaMantia)");
+//
+//	Init();
+//	glutDisplayFunc(DisplayFunction);
+//	glutKeyboardFunc(KeyboardFunction);
+//
+//	/* Do it */
+//	glutMainLoop();
 
 	return 0;
 }

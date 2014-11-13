@@ -33,6 +33,8 @@ public:
 	void breakDownHorizontalKlax(GLint);
 	void breakDownDiagonalKlax();
 	void printGameAreaTest();
+	void draw();
+	void reset();
 	bool insertNewBlock(GLint, Block);
 
 };
