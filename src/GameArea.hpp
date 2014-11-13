@@ -24,7 +24,7 @@
 class GameArea{
 
 public:
-	GLint gameAreaMatrix[3][3];
+	Block gameAreaMatrix[3][3];
 	GameArea();
 	GLint checkVerticalKlax();
 	GLint checkHorizontalKlax();
@@ -35,7 +35,7 @@ public:
 	void printGameAreaTest();
 	void draw();
 	void reset();
-	bool insertNewBlock(GLint, Block);
+	bool insertNewBlock(GLint, GLint);
 
 };
 

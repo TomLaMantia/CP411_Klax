@@ -16,7 +16,7 @@
 
 #include"Block.hpp"
 
-Block :: Block(GLint colorCode)
+Block :: Block()
 {
 	/* Specification of model co-ordinates */
 	/* Verticies */
@@ -37,7 +37,7 @@ Block :: Block(GLint colorCode)
 	face[4][0] = 5;face[4][1] = 7;face[4][2] = 3;face[4][3] = 1;
 	face[5][0] = 6;face[5][1] = 4;face[5][2] = 0;face[5][3] = 2;
 
-	this->colorCode = colorCode;
+	this->colorCode = -1;
 }
 
 void Block :: drawFace(int i)
@@ -52,33 +52,36 @@ void Block :: drawFace(int i)
 
 void Block :: draw()
 {
-	if(this->colorCode == 0)
+	if(this->colorCode != -1)
 	{
-		glColor3f(1,0,1); //purple
-	}
-	else if(this->colorCode == 1)
-	{
-		glColor3f(1,0,0); //red
-	}
-	else if(this->colorCode == 2)
-	{
-		glColor3f(1, 0.5, 0); //orange
-	}
-	else if(this->colorCode == 3)
-	{
-		glColor3f(1, 1, 0); //yellow
-	}
+		if(this->colorCode == 0)
+			{
+				glColor3f(1,0,1); //purple
+			}
+			else if(this->colorCode == 1)
+			{
+				glColor3f(1,0,0); //red
+			}
+			else if(this->colorCode == 2)
+			{
+				glColor3f(1, 0.5, 0); //orange
+			}
+			else if(this->colorCode == 3)
+			{
+				glColor3f(1, 1, 0); //yellow
+			}
 
-	glPushMatrix();
-	this->ctmMultiply();
+			glPushMatrix();
+			this->ctmMultiply();
 
-	glScalef(scaleFactor, scaleFactor, scaleFactor);
-	for (int i = 0; i < 6; i++) {
+			glScalef(scaleFactor, scaleFactor, scaleFactor);
+			for (int i = 0; i < 6; i++) {
 
-			drawFace(i);
-			glFlush();
-			glutPostRedisplay();
+					drawFace(i);
+					glFlush();
+					glutPostRedisplay();
 
+			}
+			glPopMatrix();
 	}
-	glPopMatrix();
 }

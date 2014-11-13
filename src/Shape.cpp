@@ -25,7 +25,7 @@ Shape :: Shape()
 	MC.mat[1][0] = 0.0; MC.mat[1][1] = 1.0; MC.mat[1][2] = 0.0; MC.mat[1][3] = 0.0;
 	MC.mat[2][0] = 0.0; MC.mat[2][1] = 0.0; MC.mat[2][2] = 1.0; MC.mat[2][3] = 0.0;
 	MC.mat[3][0] = 0.0; MC.mat[3][1] = 0.0; MC.mat[3][2] = 0.0; MC.mat[3][3] = 1.0;
-	scaleFactor = 1;
+	scaleFactor = .1;
 }
 
 /*
@@ -37,7 +37,7 @@ void Shape :: resetShape()
 	MC.mat[1][0] = 0.0; MC.mat[1][1] = 1.0; MC.mat[1][2] = 0.0; MC.mat[1][3] = 0.0;
 	MC.mat[2][0] = 0.0; MC.mat[2][1] = 0.0; MC.mat[2][2] = 1.0; MC.mat[2][3] = 0.0;
 	MC.mat[3][0] = 0.0; MC.mat[3][1] = 0.0; MC.mat[3][2] = 0.0; MC.mat[3][3] = 1.0;
-	scaleFactor = 1;
+	scaleFactor = .1;
 }
 
 /* Return the main Matrix of calling shape */

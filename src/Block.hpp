@@ -29,7 +29,7 @@ public:
 	GLint face[6][4]; //Block faces
 	GLint colorCode;
 
-	Block(GLint);
+	Block();
 	void drawFace(int);
 	void draw();
 };

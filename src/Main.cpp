@@ -41,7 +41,7 @@ void KeyboardFunction(unsigned char key, int x, int y)
 
 void DisplayFunction(void)
 {
-
+	myGameArea.draw();
 
 	glFlush();
 	glutSwapBuffers();
@@ -58,22 +58,30 @@ void Init(void)
 			myCamera.rotationPoint.y, myCamera.rotationPoint.z,
 			myCamera.viewUpDirection.x, myCamera.viewUpDirection.y,
 			myCamera.viewUpDirection.z);
+
+
+	myGameArea.insertNewBlock(1,3);
+	myGameArea.insertNewBlock(2,2);
+	myGameArea.insertNewBlock(3,1);
+	myGameArea.insertNewBlock(3,1);
+	myGameArea.printGameAreaTest();;
+	myGameArea.printGameAreaTest();
 }
 
 int main(int argc, char** argv)
 {
-//	glutInit(&argc, argv);
-//	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-//	glutInitWindowPosition(windowPositionX, windowPositionY);
-//	glutInitWindowSize(windowWidth, windowHeight);
-//	glutCreateWindow("Klax (By Tom LaMantia)");
-//
-//	Init();
-//	glutDisplayFunc(DisplayFunction);
-//	glutKeyboardFunc(KeyboardFunction);
-//
-//	/* Do it */
-//	glutMainLoop();
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+	glutInitWindowPosition(windowPositionX, windowPositionY);
+	glutInitWindowSize(windowWidth, windowHeight);
+	glutCreateWindow("Klax (By Tom LaMantia)");
+
+	Init();
+	glutDisplayFunc(DisplayFunction);
+	glutKeyboardFunc(KeyboardFunction);
+
+	/* Do it */
+	glutMainLoop();
 
 	return 0;
 }
