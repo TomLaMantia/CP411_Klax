@@ -14,4 +14,12 @@
     -------------------------------------------------------
  */
 
+#include"BlockNode.hpp"
 
+BlockNode :: BlockNode(){
+
+	this->data = NULL;
+	this->next = NULL;
+	this->lane = -1;
+	this->position = 10;
+}

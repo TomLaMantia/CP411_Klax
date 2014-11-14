@@ -31,7 +31,7 @@ LinkedList::LinkedList() {
  the specified index in the list
  -------------------------------------------------------
  */
-BlockNode * LinkedList::returnIndex(int targetIndex) {
+BlockNode * LinkedList :: returnIndex(int targetIndex) {
 	int i = 0;
 	BlockNode *current = front;
 
@@ -40,6 +40,19 @@ BlockNode * LinkedList::returnIndex(int targetIndex) {
 		i++;
 	}
 	return current;
+}
+
+void LinkedList :: incrementBlockPositionAtIndex(GLint targetIndex)
+{
+	int i = 0;
+	BlockNode *current = front;
+
+	while (i != targetIndex) {
+		current = current->next;
+		i++;
+	}
+
+	current->position += 1;
 }
 
 /*

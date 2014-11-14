@@ -21,10 +21,12 @@
 
 #include"LinkedList.hpp"
 #include"Block.hpp"
+#include<stdlib.h>
+#include<time.h>
 
 class ConveyorBelt{
 public:
-	LinkedList nodeList;
+	LinkedList blockList;
 
 	ConveyorBelt();
 	void insertBlockOnConveyor();

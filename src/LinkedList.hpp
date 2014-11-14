@@ -30,6 +30,7 @@ public:
 	void listInsertFront(BlockNode *);
 	void listInsertRear(BlockNode *);
 	void emptyListContents();
+	void incrementBlockPositionAtIndex(GLint);
 	int getListSize();
 	BlockNode * returnIndex(int);
 	void listRemoveIndex(int);
