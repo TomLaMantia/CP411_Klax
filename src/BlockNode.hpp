@@ -24,10 +24,12 @@
 
 class BlockNode{
 public:
-	Block data;
+	Block *data;
+	Block *next;
 	GLint lane; //the lane the block is in. Range [0,2]
 	GLint position; //the position in the lane
 
+	BlockNode();
 };
 
 #endif
