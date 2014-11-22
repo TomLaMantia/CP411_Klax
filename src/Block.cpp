@@ -42,7 +42,7 @@ Block :: Block()
 
 void Block :: drawFace(int i)
 {
-	glBegin(GL_POLYGON);
+	glBegin(GL_LINE_LOOP);
 	glVertex3fv(&vertex[face[i][0]][0]);
 	glVertex3fv(&vertex[face[i][1]][0]);
 	glVertex3fv(&vertex[face[i][2]][0]);
@@ -68,7 +68,7 @@ void Block :: draw()
 			}
 			else if(this->colorCode == 3)
 			{
-				glColor3f(1, 1, 0); //yellow
+				glColor3f(0, 1, 01); //cyan
 			}
 
 			glPushMatrix();

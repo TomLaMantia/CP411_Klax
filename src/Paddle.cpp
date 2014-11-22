@@ -8,28 +8,39 @@
  */
 
 /*
-   -------------------------------------------------------
-    This file contains implementation for the Paddle class,
-    which is defined in Paddle.hpp
-    -------------------------------------------------------
+ -------------------------------------------------------
+ This file contains implementation for the Paddle class,
+ which is defined in Paddle.hpp
+ -------------------------------------------------------
  */
 
 #include"Paddle.hpp"
 
-Paddle :: Paddle(){
+Paddle::Paddle() {
 
 	this->paddleNode = NULL;
 	this->lanePosition = 1;
 }
 
-void Paddle :: draw()
-{
+void Paddle::draw() {
+
+	GLfloat paddleOffsetX;
+
+	if (this->lanePosition == 0) {
+		paddleOffsetX = -0.5;
+	} else if (this->lanePosition == 1) {
+		paddleOffsetX = 0;
+	} else if (this->lanePosition == 2) {
+		paddleOffsetX = 0.5;
+	}
+
 	glLineWidth(4.0);
-	glColor3f(0,1,0);
-	glBegin(GL_LINES);
-		//glVertex3f(0.2, 0, 1.6);
-		//glVertex3f(0.4, 0, 1.6);
+	glColor3f(0, 1, 0);
+	glBegin(GL_POLYGON);
+		glVertex3f(paddleOffsetX - 0.1, 0, 1.6);
+		glVertex3f(paddleOffsetX + 0.1, 0, 1.6);
+		glVertex3f(paddleOffsetX + 0.1, -0.1, 1.6);
+		glVertex3f(paddleOffsetX - 0.1, -0.1, 1.6);
 	glEnd();
 }
-
 
