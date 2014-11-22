@@ -25,14 +25,12 @@
 #include<time.h>
 
 class ConveyorBelt{
-public:
-	LinkedList blockList;
-
-	ConveyorBelt();
-	void insertBlockOnConveyor();
-	LinkedList* removeBlockFromConveyor();
-	void moveConveyor();
-	void draw();
+	public:
+		LinkedList blockList;
+		ConveyorBelt();
+		void insertBlockOnConveyor();
+		LinkedList* removeBlockFromConveyor();
+		void moveConveyor();
+		void draw();
 };
-
 #endif
