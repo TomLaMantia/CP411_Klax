@@ -45,6 +45,8 @@ void KeyboardPaddleControl(GLint, GLint, GLint);
 
 void KeyboardFunction(GLubyte key, int x, int y) {
 
+
+
 }
 
 void KeyboardPaddleControl(GLint arrowKey, GLint x, GLint y) {

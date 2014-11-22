@@ -42,6 +42,7 @@ Block :: Block()
 
 void Block :: drawFace(int i)
 {
+	glLineWidth(2.0);
 	glBegin(GL_LINE_LOOP);
 	glVertex3fv(&vertex[face[i][0]][0]);
 	glVertex3fv(&vertex[face[i][1]][0]);
