@@ -28,10 +28,13 @@ public:
 	GameArea();
 	GLint checkVerticalKlax();
 	GLint checkHorizontalKlax();
-	GLint checkDiagonalKlax();
+	GLint checkLeftDiagonalKlax();
+	GLint checkRightDiagonalKlax();
+	bool checkGameAreaFull();
 	void breakDownVerticalKlax(GLint);
 	void breakDownHorizontalKlax(GLint);
-	void breakDownDiagonalKlax();
+	void breakDownLeftDiagonalKlax();
+	void breakDownRightDiagonalKlax();
 	void printGameAreaTest();
 	void draw();
 	void reset();

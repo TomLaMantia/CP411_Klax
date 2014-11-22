@@ -24,8 +24,8 @@
 using namespace std;
 
 //Program global variables
-CONST int windowPositionX = 10;
-CONST int windowPositionY = 10;
+CONST int windowPositionX = 5;
+CONST int windowPositionY = 5;
 CONST int windowWidth = 800;
 CONST int windowHeight = 800;
 CONST int conveyorBeltDelay = 500;
@@ -48,6 +48,7 @@ void Init(void);
 void DisplayFunction(void);
 void KeyboardFunction(GLubyte, int, int);
 void KeyboardPaddleControl(GLint, GLint, GLint);
+void updateGameplay();
 
 void KeyboardFunction(GLubyte key, int x, int y) {
 
@@ -79,6 +80,41 @@ void KeyboardPaddleControl(GLint arrowKey, GLint x, GLint y) {
 	}
 }
 
+void updateGameplay(){
+
+	GLint result;
+	bool gameAreaFull;
+
+	result = myGameArea.checkVerticalKlax();
+
+	if (result != -1) {
+		myGameArea.breakDownVerticalKlax(result);
+	}
+
+	result = myGameArea.checkHorizontalKlax();
+
+	if(result != -1){
+		myGameArea.breakDownHorizontalKlax(result);
+	}
+
+	result = myGameArea.checkLeftDiagonalKlax();
+
+	if(result != -1){
+		myGameArea.breakDownLeftDiagonalKlax();
+	}
+
+	result = myGameArea.checkRightDiagonalKlax();
+
+	if(result != -1){
+		myGameArea.breakDownRightDiagonalKlax();
+	}
+
+	gameAreaFull = myGameArea.checkGameAreaFull();
+	if(gameAreaFull){
+		myGameArea.reset();
+	}
+}
+
 void DisplayFunction(void)
 {
 	numDisplayFunctionIterations++;
@@ -100,6 +136,7 @@ void DisplayFunction(void)
 		myPaddle.placeBlockOnPaddle(removedNode);
 	}
 
+	updateGameplay();
 	myGameArea.draw();
 	myConveyorBelt.draw();
 	myPaddle.draw();

@@ -34,6 +34,24 @@ void GameArea :: reset()
 	}
 }
 
+bool GameArea :: checkGameAreaFull(){
+
+	bool result = true;
+	GLint row, col;
+
+	for(row = 0; row < 3; row++){
+
+		for(col = 0; col < 3; col++){
+
+			if(this->gameAreaMatrix[row][col].colorCode == -1){
+				result = false;
+			}
+		}
+	}
+
+	return result;
+}
+
 void GameArea :: draw()
 {
 	//Draw the game area itself
@@ -86,7 +104,21 @@ void GameArea :: printGameAreaTest()
 	cout << endl;
 }
 
-GLint GameArea :: checkDiagonalKlax()
+GLint GameArea :: checkRightDiagonalKlax(){
+
+	GLint result = -1;
+
+
+	if (this->gameAreaMatrix[0][2].colorCode == this->gameAreaMatrix[1][1].colorCode &&
+			this->gameAreaMatrix[1][1].colorCode == this->gameAreaMatrix[2][0].colorCode
+			&& this->gameAreaMatrix[0][2].colorCode != -1) {
+		result = 0;
+	}
+
+	return result;
+}
+
+GLint GameArea :: checkLeftDiagonalKlax()
 {
 	GLint result = -1;
 
@@ -162,7 +194,19 @@ bool GameArea :: insertNewBlock(GLint colNumber, GLint newColor)
 	return blockInserted;
 }
 
-void GameArea :: breakDownDiagonalKlax()
+void GameArea :: breakDownRightDiagonalKlax(){
+
+	this->gameAreaMatrix[0][2].colorCode = -1;
+
+	this->gameAreaMatrix[1][1] = this->gameAreaMatrix[0][1];
+	this->gameAreaMatrix[0][1].colorCode = -1;
+
+	this->gameAreaMatrix[2][0] = this->gameAreaMatrix[1][0];
+	this->gameAreaMatrix[1][0] = this->gameAreaMatrix[0][0];
+	this->gameAreaMatrix[0][0].colorCode = -1;
+}
+
+void GameArea :: breakDownLeftDiagonalKlax()
 {
 	this->gameAreaMatrix[0][0].colorCode = -1;
 
