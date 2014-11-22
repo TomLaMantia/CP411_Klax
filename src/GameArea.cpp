@@ -37,12 +37,12 @@ void GameArea :: reset()
 void GameArea :: draw()
 {
 	GLint row, col;
-	GLfloat translateFactorX = -1;
+	GLfloat translateFactorX = -0.5;
 	GLfloat translateFactorY = -2;
 
 	for(row = 2; row >= 0; row--)
 	{
-		translateFactorX = -1;
+		translateFactorX = -0.5;
 
 		for(col = 0; col < 3; col++)
 		{
@@ -50,7 +50,7 @@ void GameArea :: draw()
 			this->gameAreaMatrix[row][col].translate(0,translateFactorY,0);
 			this->gameAreaMatrix[row][col].draw();
 			this->gameAreaMatrix[row][col].resetShape();
-			translateFactorX += 0.4;
+			translateFactorX += 0.5;
 		}
 
 		translateFactorY += 0.4;

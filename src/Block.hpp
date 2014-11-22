@@ -32,6 +32,7 @@ public:
 	Block();
 	void drawFace(int);
 	void draw();
+	void printTest();
 };
 
 #endif

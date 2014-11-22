@@ -76,7 +76,6 @@ void Block :: draw()
 
 			glScalef(scaleFactor, scaleFactor, scaleFactor);
 			for (int i = 0; i < 6; i++) {
-
 					drawFace(i);
 					glFlush();
 					glutPostRedisplay();

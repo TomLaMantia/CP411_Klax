@@ -13,6 +13,7 @@
 #include"ViewingEye.hpp"
 #include"Block.hpp"
 #include"GameArea.hpp"
+#include"ConveyorBelt.hpp"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ CONST int windowHeight = 800;
 //Program global objects
 ViewingEye myCamera;
 GameArea myGameArea;
+ConveyorBelt myConveyorBelt;
 
 /*  Set positions for near and far clipping planes:  */
 GLfloat vangle = 40.0, dnear = 1.0, dfar = 10.0;
@@ -42,6 +44,7 @@ void KeyboardFunction(unsigned char key, int x, int y)
 void DisplayFunction(void)
 {
 	myGameArea.draw();
+	myConveyorBelt.draw();
 
 	glFlush();
 	glutSwapBuffers();
@@ -59,12 +62,15 @@ void Init(void)
 			myCamera.viewUpDirection.x, myCamera.viewUpDirection.y,
 			myCamera.viewUpDirection.z);
 
-//	myGameArea.insertNewBlock(1,1);
-//	myGameArea.insertNewBlock(0,0);
-//	myGameArea.insertNewBlock(2,2);
-//	myGameArea.insertNewBlock(1,1);
-//	myGameArea.insertNewBlock(2,3);
-//	myGameArea.printGameAreaTest();
+	myGameArea.insertNewBlock(1,1);
+	myGameArea.insertNewBlock(0,0);
+	myGameArea.insertNewBlock(2,2);
+	myGameArea.insertNewBlock(1,1);
+	myGameArea.insertNewBlock(2,3);
+	myGameArea.printGameAreaTest();
+
+	myConveyorBelt.insertBlockOnConveyor();
+
 }
 
 int main(int argc, char** argv)
