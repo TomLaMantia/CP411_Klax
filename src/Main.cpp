@@ -13,7 +13,9 @@
 #include"ViewingEye.hpp"
 #include"Block.hpp"
 #include"GameArea.hpp"
+#include<unistd.h>
 #include"ConveyorBelt.hpp"
+#include"Paddle.hpp"
 
 using namespace std;
 
@@ -27,6 +29,7 @@ CONST int windowHeight = 800;
 ViewingEye myCamera;
 GameArea myGameArea;
 ConveyorBelt myConveyorBelt;
+Paddle myPaddle;
 
 /*  Set positions for near and far clipping planes:  */
 GLfloat vangle = 40.0, dnear = 1.0, dfar = 10.0;
@@ -45,6 +48,7 @@ void DisplayFunction(void)
 {
 	myGameArea.draw();
 	myConveyorBelt.draw();
+	myPaddle.draw();
 
 	glFlush();
 	glutSwapBuffers();
@@ -65,7 +69,7 @@ void Init(void)
 	myGameArea.insertNewBlock(1,1);
 	myGameArea.insertNewBlock(0,0);
 	myGameArea.insertNewBlock(2,2);
-	myGameArea.insertNewBlock(1,1);
+	myGameArea.insertNewBlock(2,1);
 	myGameArea.insertNewBlock(2,3);
 	myGameArea.printGameAreaTest();
 

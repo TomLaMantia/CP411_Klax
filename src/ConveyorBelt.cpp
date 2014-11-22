@@ -91,6 +91,8 @@ void ConveyorBelt :: moveConveyor(){
 
 void ConveyorBelt :: draw(){
 
+	glLineWidth(3.0);
+
 	/*
 	 * Draw the conveyor positions
 	 */
