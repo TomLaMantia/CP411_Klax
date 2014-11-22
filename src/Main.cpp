@@ -18,6 +18,8 @@
 #include<unistd.h>
 #include"ConveyorBelt.hpp"
 #include"Paddle.hpp"
+#include"LinkedList.hpp"
+#include"Block.hpp"
 
 using namespace std;
 
@@ -27,6 +29,7 @@ CONST int windowPositionY = 100;
 CONST int windowWidth = 800;
 CONST int windowHeight = 800;
 CONST int conveyorBeltDelay = 500;
+CONST int randomInsertTarget = 10;
 
 //Program global objects
 ViewingEye myCamera;
@@ -36,6 +39,9 @@ Paddle myPaddle;
 
 /*  Set positions for near and far clipping planes:  */
 GLfloat vangle = 40.0, dnear = 1.0, dfar = 10.0;
+
+/* Global program variables */
+int numDisplayFunctionIterations = 0;
 
 //Function prototypes
 void Init(void);
@@ -75,9 +81,16 @@ void KeyboardPaddleControl(GLint arrowKey, GLint x, GLint y) {
 
 void DisplayFunction(void)
 {
+	numDisplayFunctionIterations++;
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	myConveyorBelt.moveConveyor();
+
+	if(numDisplayFunctionIterations == randomInsertTarget){
+		myConveyorBelt.insertBlockOnConveyor();
+		numDisplayFunctionIterations = 0;
+	}
 
 	BlockNode *removedNode;
 	removedNode = myConveyorBelt.removeBlockFromConveyor();
@@ -116,7 +129,7 @@ void Init(void)
 	myGameArea.insertNewBlock(2,3);
 	myGameArea.printGameAreaTest();
 
-	myConveyorBelt.insertBlockOnConveyor();
+	//myConveyorBelt.insertBlockOnConveyor();
 
 }
 
