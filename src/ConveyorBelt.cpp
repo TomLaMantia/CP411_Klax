@@ -23,12 +23,10 @@ ConveyorBelt :: ConveyorBelt()
 
 void ConveyorBelt :: insertBlockOnConveyor(){
 
-	BlockNode* newBlock;
+	BlockNode* newBlock = new BlockNode();
 	newBlock->position = 10;
-
 	srand(time(NULL));
 	newBlock->lane = rand() % 2;
-
 	this->blockList.listInsertRear(newBlock);
 }
 
@@ -46,22 +44,25 @@ void ConveyorBelt :: insertBlockOnConveyor(){
        this function simply returns NULL.
     -------------------------------------------------------
  */
-BlockNode* ConveyorBelt :: removeBlockFromConveyor(){
+LinkedList* ConveyorBelt :: removeBlockFromConveyor(){
 
-	BlockNode *result;
+	GLint length = this->blockList.getListSize();
+	LinkedList result = LinkedList();
+	BlockNode *node;
 	GLint i;
 
-	for(i = 0; i < this->blockList.getListSize(); i++)
+	for(i = 0; i < length; i++)
 	{
-		result = this->blockList.returnIndex(i);
+		node = this->blockList.returnIndex(i);
 
-		if(result->position != 0)
+		if(node->position == 0)
 		{
-			result = NULL;
+			result.listInsertFront(node);
+			this->blockList.listRemoveIndex(i);
 		}
 	}
 
-	return result;
+	return &result;
 }
 
 /*
@@ -85,5 +86,7 @@ void ConveyorBelt :: moveConveyor(){
 }
 
 void ConveyorBelt :: draw(){
+
+
 
 }

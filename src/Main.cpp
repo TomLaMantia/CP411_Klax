@@ -59,12 +59,12 @@ void Init(void)
 			myCamera.viewUpDirection.x, myCamera.viewUpDirection.y,
 			myCamera.viewUpDirection.z);
 
-	myGameArea.insertNewBlock(1,3);
-	myGameArea.insertNewBlock(2,0);
-	myGameArea.insertNewBlock(3,1);
-	myGameArea.insertNewBlock(3,1);
-	myGameArea.printGameAreaTest();;
-	myGameArea.printGameAreaTest();
+//	myGameArea.insertNewBlock(1,1);
+//	myGameArea.insertNewBlock(0,0);
+//	myGameArea.insertNewBlock(2,2);
+//	myGameArea.insertNewBlock(1,1);
+//	myGameArea.insertNewBlock(2,3);
+//	myGameArea.printGameAreaTest();
 }
 
 int main(int argc, char** argv)

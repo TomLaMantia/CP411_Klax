@@ -30,7 +30,7 @@ public:
 
 	ConveyorBelt();
 	void insertBlockOnConveyor();
-	BlockNode* removeBlockFromConveyor();
+	LinkedList* removeBlockFromConveyor();
 	void moveConveyor();
 	void draw();
 };

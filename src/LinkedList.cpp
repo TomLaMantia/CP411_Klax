@@ -52,7 +52,7 @@ void LinkedList :: incrementBlockPositionAtIndex(GLint targetIndex)
 		i++;
 	}
 
-	current->position += 1;
+	current->position -= 1;
 }
 
 /*

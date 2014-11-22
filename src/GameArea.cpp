@@ -40,7 +40,7 @@ void GameArea :: draw()
 	GLfloat translateFactorX = -1;
 	GLfloat translateFactorY = -2;
 
-	for(row = 2; row > 0; row--)
+	for(row = 2; row >= 0; row--)
 	{
 		translateFactorX = -1;
 
