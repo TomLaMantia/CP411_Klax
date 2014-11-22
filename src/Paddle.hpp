@@ -28,6 +28,7 @@ public:
 	GLint lanePosition;
 	Paddle();
 	void draw();
+	void placeBlockOnPaddle(BlockNode*);
 };
 
 #endif

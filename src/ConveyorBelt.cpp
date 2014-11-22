@@ -48,25 +48,27 @@ void ConveyorBelt :: insertBlockOnConveyor(){
        this function simply returns NULL.
     -------------------------------------------------------
  */
-LinkedList* ConveyorBelt :: removeBlockFromConveyor(){
+BlockNode* ConveyorBelt :: removeBlockFromConveyor(){
 
-	GLint length = this->blockList.getListSize();
-	LinkedList result = LinkedList();
 	BlockNode *node;
+	bool blockRemoved = false;
 	GLint i;
 
-	for(i = 0; i < length; i++)
+	for(i = 0; i < (this->blockList.getListSize()); i++)
 	{
 		node = this->blockList.returnIndex(i);
 
-		if(node->position == 0)
+		if(node->position == 1)
 		{
-			result.listInsertFront(node);
 			this->blockList.listRemoveIndex(i);
+			blockRemoved = true;
 		}
 	}
 
-	return &result;
+	if(blockRemoved == false)
+		node = NULL;
+
+	return node;
 }
 
 /*

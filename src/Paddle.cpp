@@ -16,13 +16,20 @@
 
 #include"Paddle.hpp"
 
-Paddle::Paddle() {
+Paddle :: Paddle() {
 
 	this->paddleNode = NULL;
 	this->lanePosition = 1;
 }
 
-void Paddle::draw() {
+void Paddle :: placeBlockOnPaddle(BlockNode * newPaddleNode){
+
+	this->paddleNode = newPaddleNode;
+}
+
+void Paddle :: draw() {
+
+	//First, draw the paddle itself
 
 	GLfloat paddleOffsetX;
 
@@ -42,5 +49,29 @@ void Paddle::draw() {
 		glVertex3f(paddleOffsetX + 0.1, -0.1, 1.6);
 		glVertex3f(paddleOffsetX - 0.1, -0.1, 1.6);
 	glEnd();
+
+	//Then, if the paddle has a block on it, draw the block
+	if(this->paddleNode != NULL){
+		Block paddleBlock;
+		paddleBlock = this->paddleNode->data;
+
+		/* Draw block in correct lane */
+		if(this->lanePosition == 0)
+		{
+			paddleBlock.translate(-0.5,0,0);
+		}
+		else if(this->lanePosition == 1)
+		{
+			paddleBlock.translate(0,0,0);
+		}
+		else if(this->lanePosition == 2)
+		{
+			paddleBlock.translate(0.5,0,0);
+		}
+
+		paddleBlock.translate(0,0,1.5);
+		paddleBlock.draw();
+	}
+
 }
 

@@ -10,9 +10,11 @@
  */
 
 #include<GL/glut.h>
+#include<windows.h>
 #include"ViewingEye.hpp"
 #include"Block.hpp"
 #include"GameArea.hpp"
+#include"BlockNode.hpp"
 #include<unistd.h>
 #include"ConveyorBelt.hpp"
 #include"Paddle.hpp"
@@ -24,6 +26,7 @@ CONST int windowPositionX = 100;
 CONST int windowPositionY = 100;
 CONST int windowWidth = 800;
 CONST int windowHeight = 800;
+CONST int conveyorBeltDelay = 500;
 
 //Program global objects
 ViewingEye myCamera;
@@ -37,21 +40,51 @@ GLfloat vangle = 40.0, dnear = 1.0, dfar = 10.0;
 //Function prototypes
 void Init(void);
 void DisplayFunction(void);
-void KeyboardFunction(unsigned char, int, int);
+void KeyboardFunction(GLubyte, int, int);
+void KeyboardPaddleControl(GLint, GLint, GLint);
 
-void KeyboardFunction(unsigned char key, int x, int y)
-{
+void KeyboardFunction(GLubyte key, int x, int y) {
 
+}
+
+void KeyboardPaddleControl(GLint arrowKey, GLint x, GLint y) {
+
+	if (arrowKey == GLUT_KEY_LEFT) {
+
+		if (myPaddle.lanePosition > 0) {
+			myPaddle.lanePosition -= 1;
+		}
+
+	} else if (arrowKey == GLUT_KEY_RIGHT) {
+
+		if (myPaddle.lanePosition < 2) {
+			myPaddle.lanePosition += 1;
+		}
+	}
 }
 
 void DisplayFunction(void)
 {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	myConveyorBelt.moveConveyor();
+
+	BlockNode *removedNode;
+	removedNode = myConveyorBelt.removeBlockFromConveyor();
+
+	if(removedNode != NULL && removedNode->lane == myPaddle.lanePosition)
+	{
+		myPaddle.placeBlockOnPaddle(removedNode);
+	}
+
 	myGameArea.draw();
 	myConveyorBelt.draw();
 	myPaddle.draw();
 
 	glFlush();
 	glutSwapBuffers();
+
+	Sleep(conveyorBeltDelay);
 }
 
 void Init(void)
@@ -88,6 +121,7 @@ int main(int argc, char** argv)
 	Init();
 	glutDisplayFunc(DisplayFunction);
 	glutKeyboardFunc(KeyboardFunction);
+	glutSpecialFunc(KeyboardPaddleControl);
 
 	/* Do it */
 	glutMainLoop();
