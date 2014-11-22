@@ -45,8 +45,16 @@ void KeyboardPaddleControl(GLint, GLint, GLint);
 
 void KeyboardFunction(GLubyte key, int x, int y) {
 
+	GLint colorOfRemovedBlock;
+	GLint currentPaddleLane = myPaddle.lanePosition;
 
+	if(key == 'x'){
+		colorOfRemovedBlock = myPaddle.dumpPaddle();
+	}
 
+	if(colorOfRemovedBlock != -1){
+		myGameArea.insertNewBlock(currentPaddleLane, colorOfRemovedBlock);
+	}
 }
 
 void KeyboardPaddleControl(GLint arrowKey, GLint x, GLint y) {

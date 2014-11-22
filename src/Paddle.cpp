@@ -27,6 +27,19 @@ void Paddle :: placeBlockOnPaddle(BlockNode * newPaddleNode){
 	this->paddleNode = newPaddleNode;
 }
 
+GLint Paddle :: dumpPaddle(){
+
+	GLint result = -1;
+
+	//ovbiously, we can only dump the paddle if it has a block!
+	if(this->paddleNode != NULL){
+		result = this->paddleNode->data.colorCode;
+		this->paddleNode = NULL;
+	}
+
+	return result;
+}
+
 void Paddle :: draw() {
 
 	//First, draw the paddle itself

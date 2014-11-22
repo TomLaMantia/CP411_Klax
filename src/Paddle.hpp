@@ -29,6 +29,7 @@ public:
 	Paddle();
 	void draw();
 	void placeBlockOnPaddle(BlockNode*);
+	GLint dumpPaddle();
 };
 
 #endif
