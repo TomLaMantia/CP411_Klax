@@ -24,8 +24,8 @@
 using namespace std;
 
 //Program global variables
-CONST int windowPositionX = 100;
-CONST int windowPositionY = 100;
+CONST int windowPositionX = 10;
+CONST int windowPositionY = 10;
 CONST int windowWidth = 800;
 CONST int windowHeight = 800;
 CONST int conveyorBeltDelay = 500;
@@ -38,10 +38,10 @@ ConveyorBelt myConveyorBelt;
 Paddle myPaddle;
 
 /*  Set positions for near and far clipping planes:  */
-GLfloat vangle = 40.0, dnear = 1.0, dfar = 10.0;
+GLfloat vangle = 40.0, dnear = 0, dfar = 10.0;
 
 /* Global program variables */
-int numDisplayFunctionIterations = 0;
+int numDisplayFunctionIterations = 9;
 
 //Function prototypes
 void Init(void);
@@ -121,16 +121,6 @@ void Init(void)
 			myCamera.rotationPoint.y, myCamera.rotationPoint.z,
 			myCamera.viewUpDirection.x, myCamera.viewUpDirection.y,
 			myCamera.viewUpDirection.z);
-
-	myGameArea.insertNewBlock(1,1);
-	myGameArea.insertNewBlock(0,0);
-	myGameArea.insertNewBlock(2,2);
-	myGameArea.insertNewBlock(2,1);
-	myGameArea.insertNewBlock(2,3);
-	myGameArea.printGameAreaTest();
-
-	//myConveyorBelt.insertBlockOnConveyor();
-
 }
 
 int main(int argc, char** argv)

@@ -36,6 +36,15 @@ void GameArea :: reset()
 
 void GameArea :: draw()
 {
+	//Draw the game area itself
+	glColor3f(0.5, 0.5, 0.5);
+	glBegin(GL_POLYGON);
+		glVertex3f(-1,-3.5,-.8);
+		glVertex3f(1,-3.5,-.8);
+		glVertex3f(1,-3.5,-1.5);
+		glVertex3f(-1,-3.5,-1.5);
+	glEnd();
+
 	GLint row, col;
 	GLfloat translateFactorX;
 	GLfloat translateFactorY = -2.5;
