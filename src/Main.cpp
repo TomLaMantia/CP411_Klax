@@ -57,10 +57,10 @@ void KeyboardFunction(GLubyte key, int x, int y) {
 
 	if(key == 'x'){
 		colorOfRemovedBlock = myPaddle.dumpPaddle();
-	}
 
-	if(colorOfRemovedBlock != -1){
-		myGameArea.insertNewBlock(currentPaddleLane, colorOfRemovedBlock);
+		if(colorOfRemovedBlock != -1){
+			myGameArea.insertNewBlock(currentPaddleLane, colorOfRemovedBlock);
+		}
 	}
 }
 

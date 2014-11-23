@@ -96,12 +96,43 @@ void ConveyorBelt :: draw(){
 	glLineWidth(3.0);
 
 	/*
-	 * Draw the conveyor positions
+	 * Draw the conveyor and its positions
 	 */
 	GLint i;
 	GLfloat conveyorPositionZIndex = ZOFFSET;
 	BlockNode *thisBlockNode;
 	Block thisBlock;
+
+
+	//now draw the lanes
+	glColor3f(0.5, 0.5, 0.5);
+	glBegin(GL_POLYGON);
+		glVertex3f(-1,0,-3);
+		glVertex3f(-1, 0, 1.5);
+		glVertex3f(-0.33, 0, 1.5);
+		glVertex3f(-0.33,0,-3);
+	glEnd();
+
+	glColor3f(0.3, 0.3, 0.3);
+	glBegin(GL_POLYGON);
+		glVertex3f(-0.34,0,-3);
+		glVertex3f(-0.34, 0, 1.5);
+		glVertex3f(0.32, 0, 1.5);
+		glVertex3f(0.32,0,-3);
+	glEnd();
+
+	glColor3f(0.5, 0.5, 0.5);
+	glBegin(GL_POLYGON);
+		glVertex3f(0.32,0,-3);
+		glVertex3f(0.32, 0, 1.5);
+		glVertex3f(1, 0, 1.5);
+		glVertex3f(1,0,-3);
+	glEnd();
+
+
+
+
+
 
 	glColor3f(1,1,0);
 
@@ -113,7 +144,6 @@ void ConveyorBelt :: draw(){
 
 		conveyorPositionZIndex += INCREMENT;
 	}
-
 	/*
 	 * Draw the blocks on the conveyor
 	 */
