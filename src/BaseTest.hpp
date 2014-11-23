@@ -21,16 +21,14 @@
 #include"GameArea.hpp"
 #include<stdio.h>
 class BaseTest{
-
-public:
-	BaseTest();
-	virtual ~BaseTest();
-	void assert(bool, bool, char*);
-	virtual void setUp();
-	virtual void tearDown();
+	public:
+		GLint passed;
+		GLint failed;
+		BaseTest();
+		virtual ~BaseTest();
+		void assert(bool, bool, char*);
+		virtual void setUp();
+		virtual void tearDown();
+		void stats();
 };
-
-
-
-
 #endif /* TEST_HPP_ */
