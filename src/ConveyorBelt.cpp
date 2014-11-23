@@ -103,7 +103,6 @@ void ConveyorBelt :: draw(){
 	BlockNode *thisBlockNode;
 	Block thisBlock;
 
-
 	//now draw the lanes
 	glColor3f(0.5, 0.5, 0.5);
 	glBegin(GL_POLYGON);
