@@ -55,7 +55,7 @@ bool GameArea :: checkGameAreaFull(){
 void GameArea :: draw()
 {
 	//Draw the game area itself
-	glColor3f(0.5, 0.5, 0.5);
+	glColor3f(0.4, 0.4, 0.4);
 	glBegin(GL_POLYGON);
 		glVertex3f(-1,-3.5,-.8);
 		glVertex3f(1,-3.5,-.8);

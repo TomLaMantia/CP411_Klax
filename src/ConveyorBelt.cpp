@@ -128,11 +128,6 @@ void ConveyorBelt :: draw(){
 		glVertex3f(1,0,-3);
 	glEnd();
 
-
-
-
-
-
 	glColor3f(1,1,0);
 
 	for(i = 10; i > 0; i--){
@@ -143,6 +138,7 @@ void ConveyorBelt :: draw(){
 
 		conveyorPositionZIndex += INCREMENT;
 	}
+
 	/*
 	 * Draw the blocks on the conveyor
 	 */
