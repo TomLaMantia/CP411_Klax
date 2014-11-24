@@ -34,7 +34,7 @@ CONST int windowPositionY = 5;
 CONST int windowWidth = 800;
 CONST int windowHeight = 800;
 CONST int conveyorBeltDelay = 500;
-CONST int randomInsertTarget = 10;
+CONST int randomInsertTarget = 5;
 
 //Program global objects
 ViewingEye myCamera;
@@ -43,18 +43,19 @@ ConveyorBelt myConveyorBelt;
 Paddle myPaddle;
 GLuint textures[2];
 Planet jupiter(0.5,16,16);
-Planet neptune(0.2,16,16);
+Planet neptune(0.3,16,16);
 
 /*  Set positions for near and far clipping planes:  */
 GLfloat vangle = 40.0, dnear = 0, dfar = 10.0;
 
 /* Global program variables */
-int numDisplayFunctionIterations = 9;
+int numDisplayFunctionIterations = 4;
 int conveyorSound = 0; // 0 or 1 - decides which sound to play
 
 //Function prototypes
-void ViewInit(void);
-void PlanetInit(void);
+void GameViewInit(void);
+void TextureInit(void);
+void ConveyorSound(void);
 void DisplayFunction(void);
 void KeyboardFunction(GLubyte, int, int);
 void KeyboardPaddleControl(GLint, GLint, GLint);
@@ -251,23 +252,29 @@ void updateGameplay(void){
 	}
 }
 
+void ConveyorSound(void){
+	if(conveyorSound == 0)
+		{
+			PlaySound((LPCSTR) "sounds/conveyorMovement1.wav", NULL, SND_FILENAME | SND_ASYNC);
+			conveyorSound = 1;
+		}
+		else{
+			PlaySound((LPCSTR) "sounds/conveyorMovement2.wav", NULL, SND_FILENAME | SND_ASYNC);
+			conveyorSound = 0;
+		}
+}
+
 void DisplayFunction(void)
 {
 	numDisplayFunctionIterations++;
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	updateGameplay();
+	myGameArea.draw();
+	myConveyorBelt.draw();
+	myPaddle.draw();
 
-	if(conveyorSound == 0)
-	{
-		PlaySound((LPCSTR) "sounds/conveyorMovement1.wav", NULL, SND_FILENAME | SND_ASYNC);
-		conveyorSound = 1;
-	}
-	else{
-		PlaySound((LPCSTR) "sounds/conveyorMovement2.wav", NULL, SND_FILENAME | SND_ASYNC);
-		conveyorSound = 0;
-	}
+	ConveyorSound();
 	myConveyorBelt.moveConveyor();
-
 
 	if(numDisplayFunctionIterations == randomInsertTarget){
 		myConveyorBelt.insertBlockOnConveyor();
@@ -282,11 +289,6 @@ void DisplayFunction(void)
 		myPaddle.placeBlockOnPaddle(removedNode);
 	}
 
-	updateGameplay();
-	myGameArea.draw();
-	myConveyorBelt.draw();
-	myPaddle.draw();
-
 	glEnable(GL_TEXTURE_2D);
 	jupiter.draw();
 	neptune.draw();
@@ -298,11 +300,11 @@ void DisplayFunction(void)
 	Sleep(conveyorBeltDelay);
 }
 
-void PlanetInit(void){
+void TextureInit(void){
 
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	// Create two texture
-	glGenTextures(2, textures);
+	glGenTextures(3, textures);
 
 	// configure and load first planet
 	glBindTexture(GL_TEXTURE_2D, textures[0]);
@@ -335,12 +337,55 @@ void PlanetInit(void){
 	glShadeModel(GL_FLAT);
 
 	neptune.translate(-1.5, 2, -2);
+
+	//configure background texture
+	glBindTexture( GL_TEXTURE_2D, textures[2]);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //scale linearly when image bigger than texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //scale linearly when image smalled than texture
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+	Image* image3 = loadTexture("textures/space.bmp");
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image3->sizeX, image3->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image3->data);
+	glEnable(GL_TEXTURE_2D);
+	glShadeModel(GL_FLAT);
+
+	glDisable(GL_DEPTH_TEST);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glMatrixMode(GL_PROJECTION);
+	glOrtho(0, 1, 1, 0, -1, 1);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+	glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);
+		glVertex2f(0, 0);
+		glTexCoord2f(1, 0);
+		glVertex2f(1, 0);
+		glTexCoord2f(1, 1);
+		glVertex2f(1, 1);
+		glTexCoord2f(0, 1);
+		glVertex2f(0, 1);
+	glEnd();
+
+	glutSwapBuffers();
+
+	glBegin(GL_QUADS);
+		glTexCoord2f(0, 0);
+		glVertex2f(0, 0);
+		glTexCoord2f(1, 0);
+		glVertex2f(1, 0);
+		glTexCoord2f(1, 1);
+		glVertex2f(1, 1);
+		glTexCoord2f(0, 1);
+		glVertex2f(0, 1);
+	glEnd();
+	glFlush();
 }
 
-void ViewInit(void)
+void GameViewInit(void)
 {
-	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
 	gluPerspective(vangle, 1.0, dnear, dfar);
 	glMatrixMode(GL_MODELVIEW);
 	gluLookAt(myCamera.viewPositon.x, myCamera.viewPositon.y,
@@ -358,8 +403,8 @@ int main(int argc, char** argv)
 	glutInitWindowSize(windowWidth, windowHeight);
 	glutCreateWindow("Klax (By Tom LaMantia)");
 
-	PlanetInit();
-	ViewInit();
+	TextureInit();
+	GameViewInit();
 	glutDisplayFunc(DisplayFunction);
 	glutKeyboardFunc(KeyboardFunction);
 	glutSpecialFunc(KeyboardPaddleControl);

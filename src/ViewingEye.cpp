@@ -23,7 +23,7 @@ ViewingEye :: ViewingEye()
 	this->focalLength = 70;
 	this->eyeSeperation = this->focalLength/20;
 
-	this->viewPositon.x = 0.0;
+	this->viewPositon.x = 0.2;
 	this->viewPositon.y = 3.0;
 	this->viewPositon.z = 7.0;
 
