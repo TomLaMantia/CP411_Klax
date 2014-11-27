@@ -16,7 +16,9 @@
 #include<mmsystem.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include"ViewingEye.hpp"
+#include"KlaxScore.hpp"
 #include"Block.hpp"
 #include"GameArea.hpp"
 #include"BlockNode.hpp"
@@ -44,6 +46,7 @@ Paddle myPaddle;
 GLuint textures[2];
 Planet jupiter(0.5,16,16);
 Planet neptune(0.3,16,16);
+KlaxScore myScore;
 
 /*  Set positions for near and far clipping planes:  */
 GLfloat vangle = 40.0, dnear = 0, dfar = 10.0;
@@ -57,6 +60,7 @@ void GameViewInit(void);
 void TextureInit(void);
 void ConveyorSound(void);
 void DisplayFunction(void);
+void PasteBackground(void);
 void KeyboardFunction(GLubyte, int, int);
 void KeyboardPaddleControl(GLint, GLint, GLint);
 void updateGameplay(void);
@@ -268,10 +272,14 @@ void DisplayFunction(void)
 {
 	numDisplayFunctionIterations++;
 
+	PasteBackground();
+	GameViewInit();
+
 	updateGameplay();
 	myGameArea.draw();
 	myConveyorBelt.draw();
 	myPaddle.draw();
+	myScore.draw();
 
 	ConveyorSound();
 	myConveyorBelt.moveConveyor();
@@ -350,36 +358,42 @@ void TextureInit(void){
 
 	glDisable(GL_DEPTH_TEST);
 
+	PasteBackground();
+}
+
+void PasteBackground(void) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glMatrixMode(GL_PROJECTION);
-	glOrtho(0, 1, 1, 0, -1, 1);
+	gluOrtho2D(0, 1, 1, 0);
 
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex2f(0, 0);
-		glTexCoord2f(1, 0);
-		glVertex2f(1, 0);
-		glTexCoord2f(1, 1);
-		glVertex2f(1, 1);
-		glTexCoord2f(0, 1);
-		glVertex2f(0, 1);
+	glTexCoord2f(0, 0);
+	glVertex2f(0, 0);
+	glTexCoord2f(1, 0);
+	glVertex2f(1, 0);
+	glTexCoord2f(1, 1);
+	glVertex2f(1, 1);
+	glTexCoord2f(0, 1);
+	glVertex2f(0, 1);
 	glEnd();
 
 	glutSwapBuffers();
 
 	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0);
-		glVertex2f(0, 0);
-		glTexCoord2f(1, 0);
-		glVertex2f(1, 0);
-		glTexCoord2f(1, 1);
-		glVertex2f(1, 1);
-		glTexCoord2f(0, 1);
-		glVertex2f(0, 1);
+	glTexCoord2f(0, 0);
+	glVertex2f(0, 0);
+	glTexCoord2f(1, 0);
+	glVertex2f(1, 0);
+	glTexCoord2f(1, 1);
+	glVertex2f(1, 1);
+	glTexCoord2f(0, 1);
+	glVertex2f(0, 1);
 	glEnd();
+
 	glFlush();
+	glutSwapBuffers();
 }
 
 void GameViewInit(void)
