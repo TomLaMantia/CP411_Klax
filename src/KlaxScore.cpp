@@ -47,5 +47,4 @@ void KlaxScore :: draw(){
 	glColor3f(1,0,0);
 	output(-1, 0.1, 0.1, default_message);
 	output(-1, 0, 0.1, strScore);
-
 }
