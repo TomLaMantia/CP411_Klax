@@ -228,6 +228,7 @@ void updateGameplay(void){
 	if (result != -1) {
 		PlaySound((LPCSTR) "sounds/klaxSound.wav", NULL, SND_FILENAME | SND_ASYNC);
 		myGameArea.breakDownVerticalKlax(result);
+		myScore.addKlaxToScore();
 	}
 
 	result = myGameArea.checkHorizontalKlax();
@@ -235,6 +236,7 @@ void updateGameplay(void){
 	if(result != -1){
 		PlaySound((LPCSTR) "sounds/klaxSound.wav", NULL, SND_FILENAME | SND_ASYNC);
 		myGameArea.breakDownHorizontalKlax(result);
+		myScore.addKlaxToScore();
 	}
 
 	result = myGameArea.checkLeftDiagonalKlax();
@@ -242,12 +244,15 @@ void updateGameplay(void){
 	if(result != -1){
 		PlaySound((LPCSTR) "sounds/klaxSound.wav", NULL, SND_FILENAME | SND_ASYNC);
 		myGameArea.breakDownLeftDiagonalKlax();
+		myScore.addKlaxToScore();
 	}
 
 	result = myGameArea.checkRightDiagonalKlax();
 
 	if(result != -1){
+		PlaySound((LPCSTR) "sounds/klaxSound.wav", NULL, SND_FILENAME | SND_ASYNC);
 		myGameArea.breakDownRightDiagonalKlax();
+		myScore.addKlaxToScore();
 	}
 
 	gameAreaFull = myGameArea.checkGameAreaFull();

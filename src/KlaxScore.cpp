@@ -41,10 +41,15 @@ void KlaxScore :: output(GLfloat x, GLfloat y, GLfloat z, char *string)
 }
 
 void KlaxScore :: draw(){
-	char default_message[] = "Score";
+	char default_score_message[] = "Score:";
+	char default_klax_message[] = "Klaxes:";
 	char strScore[10];
+	char strNumKlaxes[5];
+	itoa(this->numberOfKlaxes, strNumKlaxes, 10);
 	itoa(this->currentScore, strScore, 10);
 	glColor3f(1,0,0);
-	output(-1, 0.1, 0.1, default_message);
-	output(-1, 0, 0.1, strScore);
+	output(-1.2, -1, 0.1, default_score_message);
+	output(-1.2, -1.1, 0.1, strScore);
+	output(0.8, -1, 0.1, default_klax_message);
+	output(0.8, -1.1, 0.1, strNumKlaxes);
 }
